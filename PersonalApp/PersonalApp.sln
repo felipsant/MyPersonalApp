@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalApp.AZF", "PersonalApp.AZF\PersonalApp.AZF.csproj", "{E9A8B6BE-0D87-4216-B8E8-FCF8F94790EF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalApp.Services", "PersonalApp.Services\PersonalApp.Services.csproj", "{49E22052-F601-496C-A00E-2D2035A69D09}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalApp.Repositories", "PersonalApp.Repositories\PersonalApp.Repositories.csproj", "{E9F97324-EF37-47F7-BB62-2F85F43DDB38}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalApp.Models", "PersonalApp.Models\PersonalApp.Models.csproj", "{E3394D97-054E-4F01-84D1-3D1B057F5F86}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E23A2A1D-A782-4922-9347-7D279BB24114}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalApp.Services.UnitTest", "PersonalApp.Services.UnitTest\PersonalApp.Services.UnitTest.csproj", "{766D65F2-7A65-49AB-A6CD-310AD1BEC7DD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalApp.AZF.SystemTest", "PersonalApp.AZF.SystemTest\PersonalApp.AZF.SystemTest.csproj", "{08AB246A-027F-4ED9-8B60-E3BF6279861C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E9A8B6BE-0D87-4216-B8E8-FCF8F94790EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9A8B6BE-0D87-4216-B8E8-FCF8F94790EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9A8B6BE-0D87-4216-B8E8-FCF8F94790EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9A8B6BE-0D87-4216-B8E8-FCF8F94790EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49E22052-F601-496C-A00E-2D2035A69D09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49E22052-F601-496C-A00E-2D2035A69D09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49E22052-F601-496C-A00E-2D2035A69D09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49E22052-F601-496C-A00E-2D2035A69D09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9F97324-EF37-47F7-BB62-2F85F43DDB38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9F97324-EF37-47F7-BB62-2F85F43DDB38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9F97324-EF37-47F7-BB62-2F85F43DDB38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9F97324-EF37-47F7-BB62-2F85F43DDB38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3394D97-054E-4F01-84D1-3D1B057F5F86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3394D97-054E-4F01-84D1-3D1B057F5F86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3394D97-054E-4F01-84D1-3D1B057F5F86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3394D97-054E-4F01-84D1-3D1B057F5F86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{766D65F2-7A65-49AB-A6CD-310AD1BEC7DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{766D65F2-7A65-49AB-A6CD-310AD1BEC7DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{766D65F2-7A65-49AB-A6CD-310AD1BEC7DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{766D65F2-7A65-49AB-A6CD-310AD1BEC7DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08AB246A-027F-4ED9-8B60-E3BF6279861C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08AB246A-027F-4ED9-8B60-E3BF6279861C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08AB246A-027F-4ED9-8B60-E3BF6279861C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08AB246A-027F-4ED9-8B60-E3BF6279861C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{766D65F2-7A65-49AB-A6CD-310AD1BEC7DD} = {E23A2A1D-A782-4922-9347-7D279BB24114}
+		{08AB246A-027F-4ED9-8B60-E3BF6279861C} = {E23A2A1D-A782-4922-9347-7D279BB24114}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5BC7AFDD-F4E3-4993-9072-7F45FCE653C0}
+	EndGlobalSection
+EndGlobal
