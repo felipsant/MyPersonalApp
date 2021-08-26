@@ -82,6 +82,13 @@ namespace PersonalApp.Services
             return result;
         }
 
+        /// <summary>
+        /// Adding Method to read online desired Rates 
+        /// </summary>
+        /// <param name="apiToken">Token on Wise</param>
+        /// <param name="source">3 letters Currency Name</param>
+        /// <param name="target">3 letters Currency Name</param>
+        /// <returns></returns>
         public async Task<JArray> GetRates(string apiToken, string source, string target)
         {
             JArray result = null;
