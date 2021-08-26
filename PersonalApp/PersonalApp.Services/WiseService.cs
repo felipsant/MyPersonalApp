@@ -4,12 +4,14 @@ using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace PersonalApp.Services
 {
     public interface IWiseService
     {
         Task<JArray> GetProfiles(string apiToken);
+        Task<JArray> GetRates(string apiToken, string source, string target);
     }
 
     public class WiseService : IWiseService
@@ -75,6 +77,43 @@ namespace PersonalApp.Services
             catch(Exception ex)
             {
                 Logger.LogError(ex, $"{ nameof(GetProfiles)} Exception");
+                throw;
+            }
+            return result;
+        }
+
+        public async Task<JArray> GetRates(string apiToken, string source, string target)
+        {
+            JArray result = null;
+            try
+            {
+                Logger.LogDebug($"{ nameof(GetRates)} Started");
+
+                if (string.IsNullOrEmpty(source) || string.IsNullOrEmpty(target))
+                    throw new ArgumentException("Source and Target are mandatory, they cannot be Null or Empty");
+                
+                SetAPITokenToHttpClient(apiToken);
+
+                var parameters = HttpUtility.ParseQueryString(string.Empty);
+                parameters[nameof(source)] = source;
+                parameters[nameof(target)] = target;
+
+                string requestUrl = APIVersion + "/rates?" + parameters.ToString();
+                HttpResponseMessage httpResponse = await HttpClient.GetAsync(requestUrl);
+                string content = await httpResponse.Content.ReadAsStringAsync();
+                if (!string.IsNullOrEmpty(content))
+                    result = JArray.Parse(content);
+                else
+                    result = new JArray();
+
+                httpResponse.EnsureSuccessStatusCode();
+
+                Logger.LogDebug($"{ nameof(GetRates)} Ended");
+
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex, $"{ nameof(GetRates)} Exception");
                 throw;
             }
             return result;

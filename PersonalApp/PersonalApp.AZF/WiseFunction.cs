@@ -20,19 +20,35 @@ namespace PersonalApp.AZF
             this.WiseService = wiseService;
         }
 
-        [Function(nameof(WiseFunction))]
+        [Function(nameof(GetProfile))]
         public async Task<HttpResponseData> GetProfile(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "wise/profile/{wiseToken}")] HttpRequestData req, FunctionContext context, string wiseToken)
         {
-            var log = context.GetLogger(nameof(WiseFunction));
-            log.LogInformation($"{nameof(WiseFunction)} Started");
+            var log = context.GetLogger(nameof(GetProfile));
+            log.LogInformation($"{nameof(GetProfile)} Started");
 
             JArray result = await this.WiseService.GetProfiles(wiseToken);
 
             var response = req.CreateResponse(System.Net.HttpStatusCode.OK);
             await response.WriteStringAsync(result.ToString());
 
-            log.LogInformation($"{nameof(WiseFunction)} Ended");
+            log.LogInformation($"{nameof(GetProfile)} Ended");
+            return response;
+        }
+
+        [Function(nameof(GetRates))]
+        public async Task<HttpResponseData> GetRates(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "wise/rate/{wiseToken}/{source}/{target}")] HttpRequestData req, FunctionContext context, string wiseToken, string source, string target)
+        {
+            var log = context.GetLogger(nameof(GetProfile));
+            log.LogInformation($"{nameof(GetProfile)} Started");
+
+            JArray result = await this.WiseService.GetRates(wiseToken, source, target);
+
+            var response = req.CreateResponse(System.Net.HttpStatusCode.OK);
+            await response.WriteStringAsync(result.ToString());
+
+            log.LogInformation($"{nameof(GetProfile)} Ended");
             return response;
         }
     }

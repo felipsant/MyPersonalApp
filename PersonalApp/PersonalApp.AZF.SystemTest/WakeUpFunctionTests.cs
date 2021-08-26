@@ -11,6 +11,12 @@ namespace PersonalApp.AZF.SystemTest
     [TestClass]
     public class WakeUpFunctionTests : BaseAZFTest
     {
+        [ClassInitialize]
+        public static void Initialize(TestContext context)
+        {
+            InitializeBase(context);
+        }
+
         [TestMethod]
         public async Task WakeUp_ReturnsAssemblyVersion()
         {
