@@ -12,6 +12,7 @@ namespace PersonalApp.Services
     {
         Task<JArray> GetProfiles(string apiToken);
         Task<JArray> GetRates(string apiToken, string source, string target);
+        Task<JArray> GetRates(string apiToken, string source, string target, DateTime? time, DateTime? from, DateTime? to, string group);
     }
 
     public class WiseService : IWiseService
@@ -88,8 +89,23 @@ namespace PersonalApp.Services
         /// <param name="apiToken">Token on Wise</param>
         /// <param name="source">3 letters Currency Name</param>
         /// <param name="target">3 letters Currency Name</param>
-        /// <returns></returns>
         public async Task<JArray> GetRates(string apiToken, string source, string target)
+        {
+            return await GetRates(apiToken, source, target, null, null, null, string.Empty);
+        }
+
+        /// <summary>
+        /// Adding Method to read online desired Rates 
+        /// </summary>
+        /// <param name="apiToken">Token on Wise</param>
+        /// <param name="source">3 letters Currency Name</param>
+        /// <param name="target">3 letters Currency Name</param>
+        /// <param name="time">Datetime to get a specific time</param>
+        /// <param name="from">Start Datetime to get a range of time</param>
+        /// <param name="to">End Datetime to get a range of time</param>
+        /// <param name="group">Fixed string: day | hour | minute</param>
+        /// <returns>Range of Rates</returns>
+        public async Task<JArray> GetRates(string apiToken, string source, string target, DateTime? time, DateTime? from, DateTime? to, string group)
         {
             JArray result = null;
             try
@@ -105,18 +121,26 @@ namespace PersonalApp.Services
                 parameters[nameof(source)] = source;
                 parameters[nameof(target)] = target;
 
+                if (time.HasValue)
+                    parameters[nameof(time)] = Utils.Utils.ConvertDateTimeToTimestamp(time.Value).ToString();
+                if (from.HasValue)
+                    parameters[nameof(from)] = Utils.Utils.ConvertDateTimeToTimestamp(from.Value).ToString();
+                if (to.HasValue)
+                    parameters[nameof(to)] = Utils.Utils.ConvertDateTimeToTimestamp(to.Value).ToString();
+                if(string.IsNullOrEmpty(group))
+                    parameters[nameof(group)] = group;
+
                 string requestUrl = APIVersion + "/rates?" + parameters.ToString();
                 HttpResponseMessage httpResponse = await HttpClient.GetAsync(requestUrl);
+                httpResponse.EnsureSuccessStatusCode();
                 string content = await httpResponse.Content.ReadAsStringAsync();
+
                 if (!string.IsNullOrEmpty(content))
                     result = JArray.Parse(content);
                 else
                     result = new JArray();
 
-                httpResponse.EnsureSuccessStatusCode();
-
                 Logger.LogDebug($"{ nameof(GetRates)} Ended");
-
             }
             catch (Exception ex)
             {

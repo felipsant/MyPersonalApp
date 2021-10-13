@@ -1,5 +1,7 @@
-﻿using Microsoft.Azure.Functions.Worker;
-using Microsoft.Azure.Functions.Worker.Http;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Reflection;
@@ -9,21 +11,19 @@ namespace PersonalApp.AZF
 {
     public static class WakeUpFunction
     {
-        [Function(nameof(WakeUpFunction))]
-        public static HttpResponseData WakeUp(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "wakeup")] HttpRequestData req, FunctionContext context)
+        
+        [FunctionName(nameof(WakeUpFunction))]
+        public static async Task<IActionResult> WakeUp(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "wakeup")] HttpRequest req, ILogger log)
         {
-            var log = context.GetLogger(nameof(WakeUpFunction));
+            //, FunctionContext context
+            //var log = context.GetLogger(nameof(WakeUpFunction));
             log.LogInformation($"{nameof(WakeUp)} Started");
 
             string version = GetRunningVersion();
 
-            var response = req.CreateResponse(System.Net.HttpStatusCode.OK);
-            response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
-            response.WriteString(version);
-
             log.LogInformation($"{nameof(WakeUp)} Ended");
-            return response;
+            return new OkObjectResult(version);
         }
 
         private static string GetRunningVersion()

@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30804.86
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31808.319
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalApp.AZF", "PersonalApp.AZF\PersonalApp.AZF.csproj", "{E9A8B6BE-0D87-4216-B8E8-FCF8F94790EF}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalApp.Services", "PersonalApp.Services\PersonalApp.Services.csproj", "{49E22052-F601-496C-A00E-2D2035A69D09}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalApp.Repositories", "PersonalApp.Repositories\PersonalApp.Repositories.csproj", "{E9F97324-EF37-47F7-BB62-2F85F43DDB38}"
@@ -17,16 +15,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalApp.Services.UnitTe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonalApp.AZF.SystemTest", "PersonalApp.AZF.SystemTest\PersonalApp.AZF.SystemTest.csproj", "{08AB246A-027F-4ED9-8B60-E3BF6279861C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalApp.AZF", "PersonalApp.AZF\PersonalApp.AZF.csproj", "{528BD341-B33C-41BF-8CDC-CCB37D11D616}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E9A8B6BE-0D87-4216-B8E8-FCF8F94790EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E9A8B6BE-0D87-4216-B8E8-FCF8F94790EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E9A8B6BE-0D87-4216-B8E8-FCF8F94790EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E9A8B6BE-0D87-4216-B8E8-FCF8F94790EF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{49E22052-F601-496C-A00E-2D2035A69D09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{49E22052-F601-496C-A00E-2D2035A69D09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49E22052-F601-496C-A00E-2D2035A69D09}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -47,6 +43,10 @@ Global
 		{08AB246A-027F-4ED9-8B60-E3BF6279861C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08AB246A-027F-4ED9-8B60-E3BF6279861C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08AB246A-027F-4ED9-8B60-E3BF6279861C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{528BD341-B33C-41BF-8CDC-CCB37D11D616}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{528BD341-B33C-41BF-8CDC-CCB37D11D616}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{528BD341-B33C-41BF-8CDC-CCB37D11D616}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{528BD341-B33C-41BF-8CDC-CCB37D11D616}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

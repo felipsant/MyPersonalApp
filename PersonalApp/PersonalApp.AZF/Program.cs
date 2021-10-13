@@ -1,7 +1,6 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Azure.Functions.Worker.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics;
 using PersonalApp.Services;
@@ -27,7 +26,7 @@ namespace PersonalApp
                 throw new ArgumentNullException("WiseAPIUrl");
 
             var host = new HostBuilder()
-                .ConfigureFunctionsWorkerDefaults()
+                //.ConfigureFunctionsWorkerDefaults()
                 .ConfigureServices(services => {
                     services.AddLogging();
 

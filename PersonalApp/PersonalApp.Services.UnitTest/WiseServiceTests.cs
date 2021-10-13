@@ -149,7 +149,7 @@ namespace PersonalApp.Services.UnitTest
         {
             //Arrange
             string json;
-            using(StreamReader r = new StreamReader(@".\WiseJsons\Rate.json"))
+            using(StreamReader r = new StreamReader(@".\WiseJsons\SimpleRate.json"))
             {
                 json = r.ReadToEnd();
             }
