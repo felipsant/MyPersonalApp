@@ -13,7 +13,7 @@ namespace PersonalApp.AZF
     {
         
         [FunctionName(nameof(WakeUpFunction))]
-        public static async Task<IActionResult> WakeUp(
+        public static IActionResult WakeUp(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "wakeup")] HttpRequest req, ILogger log)
         {
             //, FunctionContext context

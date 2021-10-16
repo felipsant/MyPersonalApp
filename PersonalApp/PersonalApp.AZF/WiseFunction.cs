@@ -16,18 +16,26 @@ namespace PersonalApp.AZF
     public class WiseFunction
     {
         private IWiseService WiseService;
+        private HttpClient Client;
 
+        public WiseFunction()
+        {
+            Client = new HttpClient();
+            Client.BaseAddress = new Uri(Environment.GetEnvironmentVariable("WiseAPIUrl"));
+        }
+        /*
         public WiseFunction(IWiseService wiseService)
         {
             this.WiseService = wiseService;
-        }
-        
+        }*/
+
         [FunctionName(nameof(GetProfile))]
         public async Task<IActionResult> GetProfile(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "wise/profile/{wiseToken}")] HttpRequest req, ILogger log, string wiseToken)
         {
             log.LogInformation($"{nameof(GetProfile)} Started");
 
+            WiseService = new WiseService(Client, log);
             JArray result = await this.WiseService.GetProfiles(wiseToken);
 
             log.LogInformation($"{nameof(GetProfile)} Ended");
@@ -40,6 +48,7 @@ namespace PersonalApp.AZF
         {
             log.LogInformation($"{nameof(GetProfile)} Started");
 
+            WiseService = new WiseService(Client, log);
             JArray result = await this.WiseService.GetRates(wiseToken, source, target);
 
             log.LogInformation($"{nameof(GetProfile)} Ended");

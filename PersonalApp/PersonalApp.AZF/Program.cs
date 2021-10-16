@@ -10,16 +10,14 @@ using System.Net.Http;
 
 namespace PersonalApp
 {
+    //TODO: Azure Functions V4 - I don't know how to implement the dependency injection.
+    //This doesn't work.
     public class Program
     {
         private static ILoggerFactory _loggerFactory;
 
         public static void Main()
         {
-            #if DEBUG
-            Debugger.Launch();
-            #endif
-
             _loggerFactory = new LoggerFactory();
 
             if (string.IsNullOrEmpty(Environment.GetEnvironmentVariable("WiseAPIUrl")))
