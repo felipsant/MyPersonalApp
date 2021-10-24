@@ -12,7 +12,8 @@ namespace PersonalApp.Services
     {
         Task<JArray> GetProfiles(string apiToken);
         Task<JArray> GetRates(string apiToken, string source, string target);
-        Task<JArray> GetRates(string apiToken, string source, string target, DateTime? time, DateTime? from, DateTime? to, string group);
+        Task<JArray> GetRates(string apiToken, string source, string target, DateTime time);
+        Task<JArray> GetRates(string apiToken, string source, string target, DateTime from, DateTime to, string group);
     }
 
     public class WiseService : IWiseService
@@ -101,6 +102,34 @@ namespace PersonalApp.Services
         /// <param name="source">3 letters Currency Name</param>
         /// <param name="target">3 letters Currency Name</param>
         /// <param name="time">Datetime to get a specific time</param>
+        /// 
+        public async Task<JArray> GetRates(string apiToken, string source, string target, DateTime time)
+        {
+            return await GetRates(apiToken, source, target, time, null, null, string.Empty);
+        }
+
+        /// <summary>
+        /// Adding Method to read online desired Rates 
+        /// </summary>
+        /// <param name="apiToken">Token on Wise</param>
+        /// <param name="source">3 letters Currency Name</param>
+        /// <param name="target">3 letters Currency Name</param>
+        /// <param name="from">Start Datetime to get a range of time</param>
+        /// <param name="to">End Datetime to get a range of time</param>
+        /// <param name="group">Fixed string: day | hour | minute</param>
+        /// 
+        public async Task<JArray> GetRates(string apiToken, string source, string target, DateTime from, DateTime to, string group)
+        {
+            return await GetRates(apiToken, source, target, null, from, to, group);
+        }
+
+        /// <summary>
+        /// Adding Method to read online desired Rates 
+        /// </summary>
+        /// <param name="apiToken">Token on Wise</param>
+        /// <param name="source">3 letters Currency Name</param>
+        /// <param name="target">3 letters Currency Name</param>
+        /// <param name="time">Datetime to get a specific time</param>
         /// <param name="from">Start Datetime to get a range of time</param>
         /// <param name="to">End Datetime to get a range of time</param>
         /// <param name="group">Fixed string: day | hour | minute</param>
@@ -122,12 +151,12 @@ namespace PersonalApp.Services
                 parameters[nameof(target)] = target;
 
                 if (time.HasValue)
-                    parameters[nameof(time)] = Utils.Utils.ConvertDateTimeToTimestamp(time.Value).ToString();
+                    parameters[nameof(time)] = time.Value.ToString("o");
                 if (from.HasValue)
-                    parameters[nameof(from)] = Utils.Utils.ConvertDateTimeToTimestamp(from.Value).ToString();
+                    parameters[nameof(from)] = from.Value.ToString("o");
                 if (to.HasValue)
-                    parameters[nameof(to)] = Utils.Utils.ConvertDateTimeToTimestamp(to.Value).ToString();
-                if(string.IsNullOrEmpty(group))
+                    parameters[nameof(to)] = to.Value.ToString("o");
+                if(!string.IsNullOrEmpty(group))
                     parameters[nameof(group)] = group;
 
                 string requestUrl = APIVersion + "/rates?" + parameters.ToString();

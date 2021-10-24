@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using PersonalApp.AZF.SystemTest.Common;
+using System;
 using System.Threading.Tasks;
 
 namespace PersonalApp.AZF.SystemTest
@@ -44,5 +45,36 @@ namespace PersonalApp.AZF.SystemTest
             JArray result = JArray.Parse(content);
             Assert.IsTrue(result.Count > 0);
         }
+
+        [TestMethod]
+        public async Task GetRatesSpecificDay_ReturnsData()
+        {
+            //Arrange
+            //Act
+            var response = await _client.GetAsync($"wise/rate/{WiseToken}/EUR/BRL/{DateTime.Now.AddDays(-5).ToString("o")}");
+
+            //Assert
+            Assert.IsTrue(response.IsSuccessStatusCode);
+            var content = await response.Content.ReadAsStringAsync();
+
+            JArray result = JArray.Parse(content);
+            Assert.IsTrue(result.Count > 0);
+        }
+
+        [TestMethod]
+        public async Task GetRatesMultipleDays_ReturnsData()
+        {
+            //Arrange
+            //Act
+            var response = await _client.GetAsync($"wise/rate/{WiseToken}/EUR/BRL/{DateTime.Now.AddDays(-5).ToString("o")}/{DateTime.Now.ToString("o")}/day");
+
+            //Assert
+            Assert.IsTrue(response.IsSuccessStatusCode);
+            var content = await response.Content.ReadAsStringAsync();
+
+            JArray result = JArray.Parse(content);
+            Assert.IsTrue(result.Count > 0);
+        }
+
     }
 }

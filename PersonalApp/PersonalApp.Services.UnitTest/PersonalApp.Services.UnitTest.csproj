@@ -19,6 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="WiseJsons\MultipleDaysRate.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="WiseJsons\Profile.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

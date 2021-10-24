@@ -268,6 +268,66 @@ namespace PersonalApp.Services.UnitTest
                 return;
             }
         }
+
+        [TestMethod]
+        public async Task GetRatesSpecificDate_ReturnsData()
+        {
+            //Arrange
+            string json;
+            using (StreamReader r = new StreamReader(@".\WiseJsons\SimpleRate.json"))
+            {
+                json = r.ReadToEnd();
+            }
+
+            var mockHttpMessageHandler = new Mock<HttpMessageHandler>();
+            mockHttpMessageHandler.Protected()
+                .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>())
+                .ReturnsAsync(new HttpResponseMessage
+                {
+                    StatusCode = HttpStatusCode.OK,
+                    Content = new StringContent(json)
+                });
+            var logger = new Mock<ILogger>();
+            var client = new HttpClient(mockHttpMessageHandler.Object);
+            client.BaseAddress = new System.Uri("http://localhost:80");
+            var wiseService = new WiseService(client, logger.Object);
+
+            //Act
+            var result = await wiseService.GetRates(apiToken, "EUR", "BRL", DateTime.Now.AddDays(-1));
+
+            //Assert
+            Assert.AreEqual(result.Count, 1);
+        }
+
+        [TestMethod]
+        public async Task GetRatesMultipleDays_ReturnsData()
+        {
+            //Arrange
+            string json;
+            using (StreamReader r = new StreamReader(@".\WiseJsons\MultipleDaysRate.json"))
+            {
+                json = r.ReadToEnd();
+            }
+
+            var mockHttpMessageHandler = new Mock<HttpMessageHandler>();
+            mockHttpMessageHandler.Protected()
+                .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>())
+                .ReturnsAsync(new HttpResponseMessage
+                {
+                    StatusCode = HttpStatusCode.OK,
+                    Content = new StringContent(json)
+                });
+            var logger = new Mock<ILogger>();
+            var client = new HttpClient(mockHttpMessageHandler.Object);
+            client.BaseAddress = new System.Uri("http://localhost:80");
+            var wiseService = new WiseService(client, logger.Object);
+
+            //Act
+            var result = await wiseService.GetRates(apiToken, "EUR", "BRL", DateTime.Now.AddDays(-5), DateTime.Now, "day");
+
+            //Assert
+            Assert.AreEqual(result.Count, 6);
+        }
         #endregion
     }
 }
