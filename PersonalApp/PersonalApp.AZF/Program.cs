@@ -10,8 +10,9 @@ using System.Net.Http;
 
 namespace PersonalApp
 {
-    //TODO: Azure Functions V4 - I don't know how to implement the dependency injection.
-    //This doesn't work.
+    //TODO: Azure Functions V4 - Dependency injection doesn't work.
+    //https://docs.microsoft.com/en-us/azure/azure-functions/functions-dotnet-dependency-injection
+    //This code doesn't run - Is just a Draft once microsoft fixes the issues
     public class Program
     {
         private static ILoggerFactory _loggerFactory;

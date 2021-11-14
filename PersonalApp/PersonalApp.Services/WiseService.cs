@@ -142,7 +142,7 @@ namespace PersonalApp.Services
                 Logger.LogDebug($"{ nameof(GetRates)} Started");
 
                 if (string.IsNullOrEmpty(source) || string.IsNullOrEmpty(target))
-                    throw new ArgumentException("Source and Target are mandatory, they cannot be Null or Empty");
+                    throw new ArgumentNullException("Source and Target are mandatory, they cannot be Null or Empty");
                 
                 SetAPITokenToHttpClient(apiToken);
 

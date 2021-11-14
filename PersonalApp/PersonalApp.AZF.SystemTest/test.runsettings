@@ -3,6 +3,6 @@
   <TestRunParameters>
     <Parameter name="AzureFunctionURL" value="http://localhost:7071/api/" />
     <Parameter name="AzureFunctionKey" value="" />
-    <Parameter name="WiseToken" value="" />
+    <Parameter name="WiseToken" value="a3d9d7ea-2b57-4979-a765-8a9e5193a61f" />
   </TestRunParameters>
 </RunSettings>

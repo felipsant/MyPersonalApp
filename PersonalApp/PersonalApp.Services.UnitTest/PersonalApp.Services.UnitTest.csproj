@@ -19,13 +19,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="WiseJsons\MultipleDaysRate.json">
+    <None Update="WiseServiceTests\WiseJsons\MultipleDaysRate.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="WiseJsons\Profile.json">
+    <None Update="WiseServiceTests\WiseJsons\Profile.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="WiseJsons\SimpleRate.json">
+    <None Update="WiseServiceTests\WiseJsons\SingleDayRate.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

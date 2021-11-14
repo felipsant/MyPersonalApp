@@ -2,7 +2,8 @@
 
 namespace PersonalApp.Repositories
 {
-    public class AzureBlobStorageRepository
+    public class AWSDynamoDB
     {
+
     }
 }
